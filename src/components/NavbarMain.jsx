@@ -5,7 +5,7 @@ import useAuth from '../utils/auth'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 
-export default function NavbarMain() {
+export default function NavbarMain({ show }) {
     const navigate = useNavigate()
 
     const handleLogout = () => {
@@ -22,7 +22,7 @@ export default function NavbarMain() {
                 <Container>
                     <Navbar.Brand style={{ fontSize: "30px" }} > Product List</Navbar.Brand>
                     <Nav className="me-auto">
-                        <Button>Create New</Button>
+                        <Button onClick={show}>Create New</Button>
                     </Nav>
                     {authData && <Nav className="ml-auto">
                         <Nav.Link style={{ fontSize: "20px" }} onClick={handleLogout}>Logout</Nav.Link>
