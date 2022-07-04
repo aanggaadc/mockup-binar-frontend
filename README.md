@@ -1,14 +1,17 @@
 # Panduan Instalasi
 
 Install paket-paket yang di perlukan dalam menjalankan aplikasi dengan perintah sebgai berikut di teriminal.
-pastikan direktori yang di akses sudah benar seperti "home/document/mockup-binar-frontend"
+pastikan direktori yang di akses sudah benar seperti :
+```
+home/document/mockup-binar-frontend
+```
 lalu jalan perintah berikut :
 
 ```
 npm install
 ```
 
-Setelah proses instalasi selesai jalan aplikasi dengan perintah sebegai berikut "
+Setelah proses instalasi selesai, jalankan aplikasi dengan perintah sebegai berikut :
 
 ```
 npm run start
