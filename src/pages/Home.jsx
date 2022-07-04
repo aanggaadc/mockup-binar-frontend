@@ -33,6 +33,20 @@ export default function Home() {
         }, 800);
     }
 
+    const [showDelete, setShowDelete] = useState(false);
+    const handleCloseDelete = () => setShowDelete(false);
+    const handleShowDelete = (id) => {
+        Axios.get(`${API_URL}/v1/products/${id}`)
+            .then((response) => {
+                setDetailData(response.data.result)
+            }).catch((error) => {
+                console.log(error)
+            })
+        setTimeout(() => {
+            setShowDelete(true)
+        }, 800);
+    }
+
     const getProducts = () => {
         Axios.get(`${API_URL}/v1/products`)
             .then((response) => {
@@ -111,8 +125,7 @@ export default function Home() {
                                     handleShowEdit(item.id)
                                 }} style={{ cursor: "pointer" }} color='blue' size={25} />
                                 <FiTrash2 onClick={() => {
-                                    deleteProduct(item.id)
-                                    getProducts()
+                                    handleShowDelete(item.id)
                                 }} style={{ cursor: "pointer" }} color='red' size={25} />
                             </div>
                         </div>
@@ -242,6 +255,27 @@ export default function Home() {
                         )}
                     </Formik>
                 </Modal.Body>
+            </Modal>
+
+            {/* MODAL DELETE */}
+            <Modal show={showDelete} onHide={handleCloseDelete}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Delete {detailData.name}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Are you sure want to delete <span style={{ fontWeight: "bold" }}>{detailData.name} </span> ?
+                    <hr />
+                </Modal.Body>
+                <div className='delete-btn'>
+                    <Button variant="secondary" onClick={handleCloseDelete}>
+                        No
+                    </Button>
+                    <Button onClick={() => {
+                        deleteProduct(detailData.id)
+                    }} variant="danger">
+                        Yes, delete it
+                    </Button>
+                </div>
             </Modal>
         </>
     )
