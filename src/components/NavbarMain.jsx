@@ -1,8 +1,21 @@
 import React from 'react'
 import { Navbar, Nav, Container, Button } from 'react-bootstrap'
 import './NavbarMain.css'
+import useAuth from '../utils/auth'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 export default function NavbarMain() {
+    const navigate = useNavigate()
+
+    const handleLogout = () => {
+        toast.success("You are logged out, see ya!!");
+        localStorage.removeItem("token");
+        navigate('/')
+
+    };
+
+    const authData = useAuth()
     return (
         <>
             <Navbar expand="lg">
@@ -11,12 +24,15 @@ export default function NavbarMain() {
                     <Nav className="me-auto">
                         <Button>Create New</Button>
                     </Nav>
-                    <Nav className="ml-auto">
-                        <Nav.Link style={{ fontSize: "20px" }} href="/login">Login</Nav.Link>
-                    </Nav>
-                    <Nav className="ml-auto">
+                    {authData && <Nav className="ml-auto">
+                        <Nav.Link style={{ fontSize: "20px" }} onClick={handleLogout}>Logout</Nav.Link>
+                    </Nav>}
+                    {!authData && <Nav className="ml-auto">
                         <Nav.Link style={{ fontSize: "20px" }} href="/signup">Signup</Nav.Link>
-                    </Nav>
+                    </Nav>}
+                    {!authData && <Nav className="ml-auto">
+                        <Nav.Link style={{ fontSize: "20px" }} href="/login">Login</Nav.Link>
+                    </Nav>}
                 </Container>
             </Navbar>
         </>
