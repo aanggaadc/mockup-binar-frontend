@@ -1,7 +1,10 @@
 # Panduan Instalasi
 
-Install paket-paket yang di perlukan dalam menjalankan aplikasi dengan perintah sebgai berikut di teriminal.
-pastikan direktori yang di akses sudah benar seperti :
+Setelah melakukan clone repository atau download zip dari repository, buka terminal dan pindah ke lokasi direktori dimana file tersebut berada dengan perintah berikut :
+```
+cd lokasi direkotri atau cd home/document/mockup-binar-frontend
+```
+pastikan terminal sudah mengakses direktori benar seperti :
 ```
 home/document/mockup-binar-frontend
 ```
